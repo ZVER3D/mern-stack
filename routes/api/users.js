@@ -1,6 +1,9 @@
 const express = require('express');
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
+const keys = require('../../config/keys').secretOrKey;
 
 const router = express.Router();
 
@@ -56,6 +59,7 @@ router.post('/login', (req, res) => {
     // Find user by email
     User.findOne({ email })
         .then(user => {
+            // Check if user exists
             if (!user) {
                 return res.status(404).json({ email: 'User not found' });
             }
@@ -64,11 +68,19 @@ router.post('/login', (req, res) => {
             bcrypt.compare(password, user.password)
                 .then(isMatch => {
                     if (isMatch) {
-                        res.json({ msg: 'Success' });
+                        // User matched
+                        const payload = { id: user.id, name: user.name, avatar: user.avatar }; // Create JWT payload
+
+                        // Sign token
+                        jwt.sign(payload, keys, { expiresIn: 3600 }, (err, token) => {
+                            res.json({
+                                success: true,
+                                token: 'Bearer ' + token
+                            })
+                        });
                     } else {
                         return res.status(400).json({ password: 'Password incorrect' });
                     }
-                    
                 })
         });
 });
