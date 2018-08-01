@@ -34,6 +34,7 @@ router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => 
 // @route   GET api/profile/all
 // @desc    Get all profiles
 // @access  Public
+// TODO: Add pagination and sorting options
 router.get('/all', (req, res) => {
     const errors = {};
 
