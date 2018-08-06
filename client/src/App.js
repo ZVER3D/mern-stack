@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import { Provider } from 'react-redux';
 
@@ -7,6 +7,8 @@ import store from './store';
 import setAuthToken from './utils/setAuthToken';
 import { setCurrentUser, logoutUser } from './actions/authActions';
 import { clearProfile } from './actions/profileActions';
+
+import PrivateRoute from './components/common/privateRoute';
 
 import './App.css';
 
@@ -50,7 +52,9 @@ class App extends Component {
             <div className="container">
               <Route path="/register" exact component={Register} />
               <Route path="/login" exact component={Login} />
-              <Route path="/dashboard" exact component={Dashboard} />
+              <Switch>
+                <PrivateRoute path="/dashboard" exact component={Dashboard} />
+              </Switch>
             </div>
             <Footer />
           </div>
