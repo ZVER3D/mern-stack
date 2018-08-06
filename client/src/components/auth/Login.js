@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -66,7 +65,7 @@ class Login extends Component {
                                     value={this.state.password}
                                     onChange={this.onChange}
                                     error={errors.password} />
-                                    
+
                                 <input type="submit" className="btn btn-info btn-block mt-4" />
                             </form>
                         </div>
