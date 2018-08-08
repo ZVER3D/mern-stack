@@ -22,6 +22,7 @@ import CreateProfile from './components/createProfile/CreateProfile';
 import EditProfile from './components/editProfile/EditProfile';
 import AddExperience from './components/addCredentials/AddExperience';
 import AddEducation from './components/addCredentials/AddEducation';
+import Profiles from './components/profiles/Profiles';
 
 
 // Check for token
@@ -56,6 +57,7 @@ class App extends Component {
             <div className="container">
               <Route path="/register" exact component={Register} />
               <Route path="/login" exact component={Login} />
+              <Route path="/profiles" exact component={Profiles} />
               <Switch>
                 <PrivateRoute path="/dashboard" exact component={Dashboard} />
               </Switch>
