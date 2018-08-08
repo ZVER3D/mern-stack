@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import Spinner from '../common/spinner';
 import { getProfiles } from '../../actions/profileActions';
+import ProfileItem from './ProfileItem';
 
 class Profiles extends Component {
     componentDidMount() {
@@ -17,7 +18,9 @@ class Profiles extends Component {
         if (profiles === null || loading === true) {
             profileItems = <Spinner />;
         } else if(profiles.length > 0) {
-            profileItems = <h1>Profiles here</h1>;
+            profileItems = profiles.map(profile => (
+                <ProfileItem key={profile._id} profile={profile} />
+            ));
         } else {
             profileItems = <h4>No profiles found</h4>;
         }
