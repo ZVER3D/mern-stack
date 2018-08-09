@@ -12,6 +12,13 @@ import ProfileGithub from './ProfileGithub';
 import Spinner from '../common/spinner';
 
 class Profile extends Component {
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.profile.profile === null && this.props.profile.loading) {
+            this.props.history.push('/not-found');
+        }
+    }
+
     componentDidMount() {
         if (this.props.match.params.handle) { //содержит handle из ссылки
             this.props.getProfileByHandle(this.props.match.params.handle);
@@ -37,7 +44,7 @@ class Profile extends Component {
                     <ProfileHeader profile={profile} />
                     <ProfileAbout profile={profile} />
                     <ProfileCreds education={profile.education} experience={profile.experience} />
-                    <ProfileGithub />
+                    {profile.githubusername ? <ProfileGithub username={profile.githubusername} /> : null}
                 </div>
             );
         }

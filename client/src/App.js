@@ -24,6 +24,7 @@ import AddExperience from './components/addCredentials/AddExperience';
 import AddEducation from './components/addCredentials/AddEducation';
 import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
+import NotFound from './components/common/NotFound';
 
 
 // Check for token
@@ -75,6 +76,7 @@ class App extends Component {
               <Switch>
                 <PrivateRoute path="/add-education" exact component={AddEducation} />
               </Switch>
+              <Route path="/not-found" exact component={NotFound} />
             </div>
             <Footer />
           </div>
