@@ -19,6 +19,11 @@ export default function(state = initialState, action) {
                 loading: false,
                 posts: action.payload
             };
+        case at.DELETE_POST:
+            return {
+                ...state,
+                posts: state.posts.filter(post => post._id !== action.payload)
+            };
         case at.POST_LOADING:
             return {
                 ...state,
