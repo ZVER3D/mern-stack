@@ -1,4 +1,5 @@
-module.exports = {
-    mongoURI: 'mongodb://tester123:tester123@ds259361.mlab.com:59361/mern-stack-network',
-    secretOrKey: 'superSecretCode123asdo'
-};
+if (process.env.NODE_ENV === 'production') {
+    module.exports = require('./keys_prod');
+} else {
+    module.exports = require('./keys_dev');
+}
