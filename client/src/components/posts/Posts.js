@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -8,7 +8,7 @@ import Spinner from '../common/spinner';
 
 import { getPosts } from '../../actions/postActions';
 
-class Posts extends Component {
+class Posts extends PureComponent {
 
     componentDidMount() {
         this.props.getPosts();
